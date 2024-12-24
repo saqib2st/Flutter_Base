@@ -1,3 +1,7 @@
+Certainly! Below is the enhanced version of your **Capital App – Flutter Project** README, now including a detailed **Module Structure** section that defines each module's responsibilities. This addition will help your team understand the specific roles and functionalities of each module within the project.
+
+---
+
 # Capital App – Flutter Project
 
 > **Note**: The name **Capital App** is used here as an example. You can replace it with your real project name or any custom naming as required.
@@ -17,8 +21,9 @@
     - [Recommended `.gitignore` Settings](#recommended-gitignore-settings)
     - [Pubspec/YAML Configuration](#pubspecyaml-configuration)
 8. [Folder Structure](#folder-structure)
-9. [References](#references)
-10. [Conclusion](#conclusion)
+9. [Module Structure](#module-structure)
+10. [References](#references)
+11. [Conclusion](#conclusion)
 
 ---
 
@@ -358,6 +363,357 @@ Below is a recommended folder structure. Your actual structure may vary based on
 
 ---
 
+## Module Structure
+
+A well-defined module structure ensures that each part of your application is organized, maintainable, and scalable. Below is the complete project structure module by module, along with each module's responsibilities:
+
+### 1. Splash Module
+
+**Responsibility:**
+- Display the splash screen when the app launches.
+- Perform initial checks such as:
+  - Fetching the user's profile (`getProfile` API call).
+  - Verifying if the app is active.
+  - Determining if the user is already logged in to navigate to the appropriate screen.
+
+**Structure:**
+```
+lib/features/splash/
+├── data/
+│   ├── data_sources/
+│   │   └── splash_remote_data_source.dart
+│   ├── models/
+│   │   └── profile_model.dart
+│   └── data_repository/
+│       └── splash_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── profile.dart
+│   ├── repository/
+│   │   └── splash_repository.dart
+│   └── usecases/
+│       └── get_profile_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── splash_provider.dart
+    ├── view/
+    │   └── splash_screen.dart
+    └── widgets/
+        └── splash_widget.dart
+```
+
+### 2. Auth Module
+
+**Responsibility:**
+- Handle all authentication-related functionalities such as login, registration, password reset, and social sign-ins.
+- Manage authentication state and secure user sessions.
+
+**Structure:**
+```
+lib/features/auth/
+├── data/
+│   ├── data_sources/
+│   │   └── auth_remote_data_source.dart
+│   ├── models/
+│   │   └── user_model.dart
+│   └── data_repository/
+│       └── auth_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── user.dart
+│   ├── repository/
+│   │   └── auth_repository.dart
+│   └── usecases/
+│       ├── login_usecase.dart
+│       ├── register_usecase.dart
+│       └── logout_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── auth_provider.dart
+    ├── view/
+    │   ├── login_screen.dart
+    │   ├── register_screen.dart
+    │   └── forgot_password_screen.dart
+    └── widgets/
+        ├── login_form.dart
+        ├── registration_form.dart
+        └── password_reset_form.dart
+```
+
+### 3. Profile Module
+
+**Responsibility:**
+- Manage user profile data including viewing and editing profile information.
+- Handle profile-related API interactions and data persistence.
+
+**Structure:**
+```
+lib/features/profile/
+├── data/
+│   ├── data_sources/
+│   │   └── profile_remote_data_source.dart
+│   ├── models/
+│   │   └── profile_model.dart
+│   └── data_repository/
+│       └── profile_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── profile.dart
+│   ├── repository/
+│   │   └── profile_repository.dart
+│   └── usecases/
+│       ├── get_profile_usecase.dart
+│       └── update_profile_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── profile_provider.dart
+    ├── view/
+    │   └── profile_screen.dart
+    └── widgets/
+        ├── profile_view.dart
+        └── edit_profile_form.dart
+```
+
+### 4. Home Module
+
+**Responsibility:**
+- Serve as the main dashboard or landing page after user authentication.
+- Display key information, navigation options, and access to other modules.
+
+**Structure:**
+```
+lib/features/home/
+├── data/
+│   ├── data_sources/
+│   │   └── home_remote_data_source.dart
+│   ├── models/
+│   │   └── home_model.dart
+│   └── data_repository/
+│       └── home_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── home_entity.dart
+│   ├── repository/
+│   │   └── home_repository.dart
+│   └── usecases/
+│       └── fetch_home_data_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── home_provider.dart
+    ├── view/
+    │   └── home_screen.dart
+    └── widgets/
+        ├── home_dashboard.dart
+        └── home_navigation.dart
+```
+
+### 5. Settings Module
+
+**Responsibility:**
+- Allow users to configure app settings such as notifications, themes, language preferences, and account settings.
+- Manage the persistence of user preferences.
+
+**Structure:**
+```
+lib/features/settings/
+├── data/
+│   ├── data_sources/
+│   │   └── settings_remote_data_source.dart
+│   ├── models/
+│   │   └── settings_model.dart
+│   └── data_repository/
+│       └── settings_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── settings.dart
+│   ├── repository/
+│   │   └── settings_repository.dart
+│   └── usecases/
+│       ├── get_settings_usecase.dart
+│       └── update_settings_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── settings_provider.dart
+    ├── view/
+    │   └── settings_screen.dart
+    └── widgets/
+        ├── notification_settings.dart
+        ├── theme_selector.dart
+        └── language_selector.dart
+```
+
+### 6. Notifications Module
+
+**Responsibility:**
+- Handle all aspects of in-app and push notifications.
+- Manage notification settings and preferences.
+
+**Structure:**
+```
+lib/features/notifications/
+├── data/
+│   ├── data_sources/
+│   │   └── notifications_remote_data_source.dart
+│   ├── models/
+│   │   └── notification_model.dart
+│   └── data_repository/
+│       └── notifications_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── notification.dart
+│   ├── repository/
+│   │   └── notifications_repository.dart
+│   └── usecases/
+│       ├── fetch_notifications_usecase.dart
+│       └── mark_as_read_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── notifications_provider.dart
+    ├── view/
+    │   └── notifications_screen.dart
+    └── widgets/
+        ├── notification_list.dart
+        └── notification_item.dart
+```
+
+### 7. Settings Module
+
+**Responsibility:**
+- Manage application settings, such as user preferences, theme selection, and other configurable options.
+- Provide interfaces for users to update their settings.
+
+**Structure:**
+```
+lib/features/settings/
+├── data/
+│   ├── data_sources/
+│   │   └── settings_remote_data_source.dart
+│   ├── models/
+│   │   └── settings_model.dart
+│   └── data_repository/
+│       └── settings_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── settings.dart
+│   ├── repository/
+│   │   └── settings_repository.dart
+│   └── usecases/
+│       ├── get_settings_usecase.dart
+│       └── update_settings_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── settings_provider.dart
+    ├── view/
+    │   └── settings_screen.dart
+    └── widgets/
+        ├── theme_selector.dart
+        └── language_selector.dart
+```
+
+### 8. Analytics Module
+
+**Responsibility:**
+- Track and analyze user interactions and app performance.
+- Provide insights and reports based on collected data.
+
+**Structure:**
+```
+lib/features/analytics/
+├── data/
+│   ├── data_sources/
+│   │   └── analytics_remote_data_source.dart
+│   ├── models/
+│   │   └── analytics_model.dart
+│   └── data_repository/
+│       └── analytics_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── analytics.dart
+│   ├── repository/
+│   │   └── analytics_repository.dart
+│   └── usecases/
+│       └── track_event_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── analytics_provider.dart
+    ├── view/
+    │   └── analytics_dashboard.dart
+    └── widgets/
+        └── analytics_graph.dart
+```
+
+### 9. Chat Module
+
+**Responsibility:**
+- Provide real-time messaging capabilities within the app.
+- Manage chat threads, message storage, and user interactions.
+
+**Structure:**
+```
+lib/features/chat/
+├── data/
+│   ├── data_sources/
+│   │   └── chat_remote_data_source.dart
+│   ├── models/
+│   │   └── message_model.dart
+│   └── data_repository/
+│       └── chat_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── message.dart
+│   ├── repository/
+│   │   └── chat_repository.dart
+│   └── usecases/
+│       ├── send_message_usecase.dart
+│       └── fetch_messages_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── chat_provider.dart
+    ├── view/
+    │   └── chat_screen.dart
+    └── widgets/
+        ├── message_list.dart
+        └── message_input.dart
+```
+
+### 10. Settings Module
+
+**Responsibility:**
+- Manage various app settings such as user preferences, theme options, and notification settings.
+- Provide interfaces for users to customize their experience.
+
+**Structure:**
+```
+lib/features/settings/
+├── data/
+│   ├── data_sources/
+│   │   └── settings_remote_data_source.dart
+│   ├── models/
+│   │   └── settings_model.dart
+│   └── data_repository/
+│       └── settings_repository_impl.dart
+├── domain/
+│   ├── entities/
+│   │   └── settings.dart
+│   ├── repository/
+│   │   └── settings_repository.dart
+│   └── usecases/
+│       ├── get_settings_usecase.dart
+│       └── update_settings_usecase.dart
+└── presentation/
+    ├── provider/
+    │   └── settings_provider.dart
+    ├── view/
+    │   └── settings_screen.dart
+    └── widgets/
+        ├── theme_selector.dart
+        └── language_selector.dart
+```
+
+*Note: Ensure that each module follows the **Data**, **Domain**, and **Presentation** layers to maintain a clean architecture.*
+
+---
+
 ## References
 
 - **Estimating Time:** [How to Estimate Time for a Project](https://blog.flutter.wtf/how-to-estimate-time-for-a-project/)
@@ -375,4 +731,4 @@ Feel free to adapt and extend this structure based on your team’s conventions 
 
 ---
 
-Feel free to copy and use this reformatted README for your project. Let me know if you need any further assistance!
+Feel free to copy and use this enhanced README for your project. Let me know if you need any further assistance!
