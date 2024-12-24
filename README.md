@@ -1,7 +1,3 @@
-Certainly! Below is the reformatted and polished version of your **Capital App – Flutter Project** README. This version ensures proper Markdown syntax, clear structure, and enhanced readability.
-
----
-
 # Capital App – Flutter Project
 
 > **Note**: The name **Capital App** is used here as an example. You can replace it with your real project name or any custom naming as required.
